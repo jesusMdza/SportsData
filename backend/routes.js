@@ -5,14 +5,12 @@ const axios = require('axios');
 router.get('/data', (req, res, next) => {
   res.send('GETTING DATA FROM SPORTSDATAIO');
 
-  let sportsData;
-
-  const exResponse = axios({
+  axios({
     method: 'get',
     url: 'https://api.sportsdata.io/v3/nfl/odds/json/BettingMetadata',
     headers: {
       "Content-Type": "application/json",
-      "Ocp-Apim-Subscription-Key": key
+      "Ocp-Apim-Subscription-Key": process.env.API_KEY
     },
   })
   .then(response => {
@@ -23,6 +21,5 @@ router.get('/data', (req, res, next) => {
     console.log(error);
   })
 });
-
 
 module.exports = router;
