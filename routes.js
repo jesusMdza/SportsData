@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 const axios = require('axios');
+
 router.get('/data', (req, res, next) => {
   res.send('GETTING DATA FROM SPORTSDATAIO');
 
@@ -20,7 +21,8 @@ router.get('/data', (req, res, next) => {
   })
   .catch(error => {
     console.log(error);
-  });
+  })
 });
+
 
 module.exports = router;
