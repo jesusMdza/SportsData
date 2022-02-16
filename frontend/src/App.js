@@ -1,6 +1,6 @@
-import './App.css';
-import { useState, useEffect } from 'react';
-import { Button } from '@mui/material';
+import "./App.css";
+import { useState, useEffect } from "react";
+import { Button } from "@mui/material";
 
 function App() {
   const [books, setBooks] = useState([]);
@@ -11,14 +11,12 @@ function App() {
   }, []);
 
   const getBooks = async () => {
-    const response = await fetch('https://api.sportsdata.io/v3/nfl/odds/json/BettingMetadata', {
-      method: 'GET',
+    const response = await fetch("https://api.sportsdata.io/v3/nfl/odds/json/BettingMetadata", {
+      method: "GET",
       headers: {
         "Access-Control-Allow-Origin": "*",
-        "Access-Control-Allow-Header": "Authorization, Origin, Content-Type, X-Auth-Token",
-        "Access-Control-Allow-Methods": "GET, POST, PATCH, PUT, DELETE, OPTIONS",
-        "Content-Type": "application/json",
-        "Authorization": `Token ${process.env.REACT_APP_SHARPSPORTS_API_KEY}`
+        "Ocp-Apim-Subscription-Key": `${process.env.REACT_APP_SPORTSDATA_API_KEY}`,
+        "Content-Type": "application/json"
       }
     });
 
@@ -26,11 +24,11 @@ function App() {
   }
 
   const postContext = async (data = {}) => {
-    const response = await fetch('https://api.sharpsports.io/v1/context', {
-      method: 'POST',
+    const response = await fetch("https://api.sharpsports.io/v1/context", {
+      method: "POST",
       headers: {
-        'Authorization': `Token ${process.env.REACT_APP_SHARPSPORTS_API_KEY}`,
-        'Content-Type': 'application/json'
+        "Authorization": `Token ${process.env.REACT_APP_SHARPSPORTS_API_KEY}`,
+        "Content-Type": "application/json"
       },
       body: JSON.stringify(data)
     });
@@ -67,8 +65,8 @@ function App() {
   return (
     <div className="App">
       <h1>API testing</h1>
-      <Button sx={{ background: 'gray', color: 'white', fontWeight: 'bold', marginRight: '1em' }}>Get Data</Button>
-      <Button sx={{ background: 'green', color: 'white', fontWeight: 'bold' }} onClick={showSportsBookPopup} variant="primary">SportsBook Link</Button>
+      <Button sx={{ background: "gray", color: "white", fontWeight: "bold", marginRight: "1em" }}>Get Data</Button>
+      <Button sx={{ background: "green", color: "white", fontWeight: "bold" }} onClick={showSportsBookPopup} variant="primary">SportsBook Link</Button>
     </div>
   );
 }
